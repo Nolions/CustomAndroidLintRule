@@ -1,0 +1,3 @@
+include ':editTextLintCheck'
+include ':app'
+rootProject.name = "exerciseCustomAndroidLintRule"

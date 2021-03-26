@@ -52,6 +52,16 @@ companion object {
 }
 ```
 
+id: 每一個issue都有一個獨立ID，用於讓Android Lint識別
+
+priority: issue顯示時的優先度，最高為10，最低為1。
+
+severity: 回報嚴重層級(FATAL, ERROR, WARNING, INFORMATIONAL, IGNORE)
+
+> FATAL, ERROR皆為錯誤，其中`FATAL`將會導致ADT中斷APK產生
+
+implementation: 註冊實施檢測條件
+
 覆寫 `getApplicableElements`方法，並且指定要探測的元件
 
 ```
@@ -76,6 +86,22 @@ override fun visitElement(context: XmlContext, element: Element) {
         )
     }
 }
+```
+
+issue: 指定issue
+
+message: 顯示訊息內容
+
+location: 詳細顯示報告檔案與行數
+
+quickfixData: Quick Fixes option
+
+```
+LintFix.create()
+    .replace()
+    .text(SdkConstants.EDIT_TEXT) // Put the text we're looking to replace
+    .with(SdkConstants.TEXT_VIEW) // Put the text we want to replace it with
+    .build()
 ```
 
 Step4.
@@ -136,3 +162,5 @@ jar {
 1. [Android Lint Framework — An Introduction](https://proandroiddev.com/android-lint-framework-an-introduction-36139deedf8b)
 
 2. [WRITE CUSTOM ANDROID LINT RULE - LAYOUT FILES](https://varunbarad.com/blog/write-custom-android-lint-rule-layout-files)
+
+3. [Enforcing Custom View Usage With Android Lint](https://androidessence.com/enforce-custom-views-with-lint)

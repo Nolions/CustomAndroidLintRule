@@ -13,7 +13,7 @@ class InputTypeDetector : LayoutDetector() {
             explanation = "You should specify an inputType for each EditText so that you can get the proper keyboard to be shown by system.",
             category = Category.USABILITY,
             priority = 8,
-            severity = Severity.ERROR,
+            severity = Severity.FATAL,
             implementation = Implementation(
                 InputTypeDetector::class.java,
                 Scope.ALL_RESOURCES_SCOPE
@@ -35,7 +35,12 @@ class InputTypeDetector : LayoutDetector() {
             context.report(
                 issue = ISSUE_MISSING_INPUT_TYPE,
                 location = context.getLocation(element),
-                message = ISSUE_MISSING_INPUT_TYPE.getExplanation(TextFormat.TEXT)
+                message = ISSUE_MISSING_INPUT_TYPE.getExplanation(TextFormat.TEXT),
+//                quickfixData = LintFix.create()
+//                    .replace()
+//                    .text(SdkConstants.EDIT_TEXT)
+//                    .with(SdkConstants.TEXT_VIEW)
+//                    .build()
             )
         }
     }
